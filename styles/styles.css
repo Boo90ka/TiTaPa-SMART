@@ -1,0 +1,38 @@
+﻿:root {
+  --primary: #ff6f61;
+  --secondary: #3f51b5;
+  --bg-start: #f5f7fa;
+  --bg-end: #c3cfe2;
+  --glass: rgba(255,255,255,0.4);
+}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+body {
+  background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+  min-height:100vh; color:#333;
+}
+nav ul { list-style:none; display:flex; gap:10px; align-items:center; }
+nav a, button { padding:10px 20px; border:none; border-radius:25px; background:var(--primary); color:#fff; cursor:pointer; text-decoration:none; transition:transform .2s; }
+nav a:hover, button:hover { transform:translateY(-2px); }
+.logo, .logo-sidebar { height:40px; }
+#hero { position:relative; text-align:center; padding:80px 20px; background:url('../assets/hero-bg.jpg') center/cover; }
+#hero::before { content:''; position:absolute; inset:0; backdrop-filter:blur(6px) brightness(0.7); background:var(--glass); }
+.hero-buttons button { margin:0 10px; }
+#features, .services-grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; padding:40px 20px; }
+.card, .service-card {
+  background:var(--glass); backdrop-filter:blur(10px);
+  border-radius:16px; padding:20px; width:240px; text-align:center;
+  box-shadow:0 8px 24px rgba(0,0,0,0.1); transition:transform .3s;
+}
+.card:hover, .service-card:hover { transform:translateY(-6px); }
+.chat-page, .services-page, .romance-page, .premium-chat-page { padding:50px 20px; text-align:center; }
+.chat-container { max-width:600px; margin:0 auto; background:var(--glass); backdrop-filter:blur(10px); border-radius:12px; overflow:hidden; }
+.messages { max-height:300px; overflow-y:auto; padding:20px; }
+.msg { margin-bottom:12px; }
+.msg.user { text-align:right; }
+.msg.bot { text-align:left; }
+#chat-form { display:flex; border-top:1px solid #eee; }
+#chat-input { flex:1; padding:10px; border:none; }
+#chat-form button { padding:0 20px; background:var(--secondary); border:none; color:#fff; cursor:pointer; }
+.romance-theme { background: linear-gradient(135deg, #fbc2eb, #a18cd1); color:#fff; }
+.romance-page { padding:100px 20px; backdrop-filter:blur(4px); border-radius:12px; }
+.premium-chat-page { padding:80px 20px; }

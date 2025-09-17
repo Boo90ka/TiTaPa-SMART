@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang='ar' dir='rtl'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>TiTaPa â€“ Ø¨Ø« Ù…Ø¨Ø§Ø´Ø±</title>
+  <link rel='stylesheet' href='styles/styles.css'>
+  <script src='https://unpkg.com/livekit-client/dist/livekit-client.min.js'></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <img src='assets/logo.svg' alt='TiTaPa Logo' class='logo'>
+      <ul>
+        <li><a href='index.html'>Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</a></li>
+        <li><a href='live.html'>Ø¨Ø« Ù…Ø¨Ø§Ø´Ø±</a></li>
+        <li><a href='dashboard.html'>Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ…</a></li>
+        <li><button id='lang-toggle'>Ø¹Ø±Ø¨ÙŠ/EN</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id='video-player' class='player'></div>
+  <div class='controls'>
+    <button onclick='joinRoom()'>Ø§Ù†Ø¶Ù…</button>
+    <button onclick='toggleCam()'>ÙƒØªÙ… Ø§Ù„ÙƒØ§Ù…ÙŠØ±Ø§</button>
+    <button onclick='toggleMic()'>ÙƒØªÙ… Ø§Ù„ØµÙˆØª</button>
+  </div>
+
+  <script src='scripts/app.js'></script>
+  <script>
+    async function joinRoom() {
+      const url = 'YOUR_LIVEKIT_WS_URL';
+      const token = 'YOUR_ACCESS_TOKEN';
+      const room = await LiveKit.connect(url, token);
+      const track = await room.localParticipant.createCameraTrack();
+      room.localParticipant.publishTrack(track);
+      const container = document.getElementById('video-player');
+      room.on('trackPublished', (pub) => {
+        if (pub.track.kind === 'video') {
+          container.appendChild(pub.track.attach());
+        }
+      });
+    }
+    function toggleCam() { /* ... */ }
+    function toggleMic() { /* ... */ }
+  </script>
+</body>
+</html>

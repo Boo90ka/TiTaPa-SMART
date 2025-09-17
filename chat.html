@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang='ar' dir='rtl'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>TiTaPa â€“ Ø§Ù„Ø¯Ø±Ø¯Ø´Ø© Ø§Ù„Ø°ÙƒÙŠØ©</title>
+  <link rel='stylesheet' href='styles/styles.css'>
+</head>
+<body>
+  <header>
+    <nav>
+      <img src='assets/logo.svg' alt='TiTaPa Logo' class='logo'>
+      <ul>
+        <li><a href='index.html'>Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©</a></li>
+        <li><a href='live.html'>Ø¨Ø« Ù…Ø¨Ø§Ø´Ø±</a></li>
+        <li><a href='dashboard.html'>Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ…</a></li>
+        <li><a href='chat.html'>Ø§Ù„Ø¯Ø±Ø¯Ø´Ø© Ø§Ù„Ø°ÙƒÙŠØ©</a></li>
+        <li><button id='lang-toggle'>Ø¹Ø±Ø¨ÙŠ/EN</button></li>
+      </ul>
+    </nav>
+  </header>
+  <main class='chat-page'>
+    <div class='chat-container'>
+      <div id='messages' class='messages'></div>
+      <form id='chat-form'>
+        <input id='chat-input' type='text' placeholder='Ø£Ø±Ø³Ù„ Ø±Ø³Ø§Ù„Ø©â€¦' autocomplete='off' />
+        <button type='submit'>Ø¥Ø±Ø³Ø§Ù„</button>
+      </form>
+    </div>
+  </main>
+  <script src='scripts/app.js'></script>
+  <script>
+    const form = document.getElementById('chat-form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+      document.getElementById('messages').innerHTML += <div class='msg user'>Ø£Ù†Øª: </div>;
+      input.value = '';
+      // Ù‡Ù†Ø§ ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø³ØªØ¯Ø¹Ø§Ø¡ API Ø°ÙƒØ§Ø¡ Ø§ØµØ·Ù†Ø§Ø¹ÙŠ
+      setTimeout(() => {
+        document.getElementById('messages').innerHTML += <div class='msg bot'>TiTaPa: Ù‡Ø°Ø§ Ø±Ø¯ ØªØ¬Ø±ÙŠØ¨ÙŠ.</div>;
+      }, 500);
+    });
+  </script>
+</body>
+</html>
